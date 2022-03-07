@@ -1,0 +1,21 @@
+Total requests blocked: 12,485
+Entries in blocklist: 120
+Active in last 24 hours: 108
+Stale (added over 24h ago, not seen since): 4
+
+Most active:
+192.168.0.16 -- 3,598 blocks in 1 day, 14 hours -- seen 1 day, 14 hours ago -- 3 day cooldown
+192.168.0.189 -- 2,748 blocks in 1 month, 1 week -- seen 8 hours ago -- 3 day cooldown
+192.168.0.82 -- 954 blocks in 3 months, 1 week -- seen 3 hours ago -- 3 day cooldown
+192.168.0.72 -- 796 blocks in 3 months, 1 week -- seen 3 hours ago -- 3 day cooldown
+192.168.0.36 -- 792 blocks in 3 months, 1 week -- seen 8 hours ago -- 3 day cooldown
+
+Most recent:
+192.168.0.154 -- 406 blocks in 3 months, 1 week -- seen 21 minutes ago -- 3 day cooldown
+192.168.0.199 -- 338 blocks in 3 months, 1 week -- seen 52 minutes ago -- 3 day cooldown
+192.168.0.69 -- 204 blocks in an hour -- seen an hour ago -- 3 day cooldown
+192.168.0.61 -- 600 blocks in 3 months, 1 week -- seen 2 hours ago -- 3 day cooldown
+192.168.0.50 -- 110 blocks in 1 month -- seen 2 hours ago -- 3 day cooldown
+
+Longest lived:
+192.168.0.154 -- 406 blocks in 3 months, 1 week -- seen 21 minutes ago -- 3 day cooldown
