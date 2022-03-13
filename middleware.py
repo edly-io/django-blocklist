@@ -1,13 +1,11 @@
 import datetime
 import logging
-from typing import Set
 
 from django.conf import settings
-from django.db.models import F
-from django.http import HttpRequest, HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
 
 from .models import BlockedIP
-from .utils import get_blocklist, user_ip_from_request
+from .utils import user_ip_from_request
 
 logger = logging.getLogger(__name__)
 

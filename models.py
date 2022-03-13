@@ -1,6 +1,5 @@
 import datetime
 
-from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import intcomma, naturaltime
 from django.db import models
 from django.db.models.fields import CharField, DateTimeField, GenericIPAddressField, IntegerField

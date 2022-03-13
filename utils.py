@@ -1,9 +1,7 @@
 import datetime
 import logging
-import sys
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpRequest
 
