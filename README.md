@@ -1,11 +1,9 @@
 # Django-blocklist
-
 A Django app that implements IP-based blocklisting. It consists of a data model for the blocklist entries, and middleware that performs the blocking. It is mostly controlled by its management commands.
 
 This app is primarily intended for use in situations where server-level blocking is not available, e.g. on platform-as-a-service hosts like PythonAnywhere or Heroku. Being an application-layer solution, it's not as performant as blocking via firewall or web server process, but is suitable for moderate traffic sites. It also offers better integration with the application stack, for easier management.
 
 ## Quick start
-
 1. Add "blocklist" to your INSTALLED_APPS setting like this::
 
         INSTALLED_APPS = [
@@ -29,9 +27,9 @@ This app is primarily intended for use in situations where server-level blocking
          }
 
 4. Run `python manage.py migrate` to create the `blocklist_blockedip` table.
+5. Add IPs to the list (via management commands,  `utils.add_to_blocklist`, or the admin).
 
 ## Management commands
-
 Django-blocklist includes several management commands:
 
 * `add_to_blocklist` &mdash; (one or more IPs)
@@ -47,7 +45,6 @@ The `--help` for each of these details its available options.
 For exporting or importing BlockedIP entries, use Django's built-in `dumpdata` and `loaddata` management commands.
 
 ## Reporting
-
 The `report_blocklist` command gives information about the current collection of IPs, including:
 * Number of listed IPs
 * Total number of blocked requests from listed IPs
@@ -57,3 +54,8 @@ The `report_blocklist` command gives information about the current collection of
 * Five IPs most recently blocked
 * Longest running entry
 * IP counts by reason
+
+## Utility methods
+The `utils` module defines two convenience functions for updating the list from your application code:
+* `add_to_blocklist(ips: set, reason="")` adds IPs to the blocklist
+* `remove_from_blocklist(ip: str)` removes an entry, returning `True` if successful
