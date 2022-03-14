@@ -7,7 +7,7 @@ from django.db.models import Min
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from blocklist.models import BlockedIP
+from django_blocklist.models import BlockedIP
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +38,6 @@ class Command(BaseCommand):
             message = f"Would have removed {deletion_count} IPs."
         else:
             message = (
-                f"Removed {deletion_count} IPs from blocklist; {total_at_start - deletion_count} remain."
+                f"Removed {deletion_count} IPs from django_blocklist; {total_at_start - deletion_count} remain."
             )
         logger.info(message)

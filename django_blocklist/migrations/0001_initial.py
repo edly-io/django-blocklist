@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('last_seen', models.DateTimeField(blank=True, db_index=True, null=True)),
                 ('reason', models.CharField(blank=True, db_index=True, default='', max_length=255)),
                 ('tally', models.IntegerField(default=1, help_text='Number of times this IP has been blocked since first_seen')),
-                ('cooldown', models.IntegerField(default=7, help_text='Cooldown period; number of days with no connections before IP is dropped from blocklist')),
+                ('cooldown', models.IntegerField(default=7, help_text='Cooldown period; number of days with no connections before IP is dropped from django_blocklist')),
             ],
             options={
                 'verbose_name': 'blocked IP',

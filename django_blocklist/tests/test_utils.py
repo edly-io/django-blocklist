@@ -5,7 +5,7 @@ from django.core.cache import cache
 from django.http import HttpRequest
 from django.test import TestCase
 
-from blocklist.utils import (
+from django_blocklist.utils import (
     CACHE_KEY,
     add_to_blocklist,
     get_blocklist,

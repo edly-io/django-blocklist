@@ -14,7 +14,7 @@ class BlockedIP(models.Model):
     last_seen = DateTimeField(blank=True, null=True, db_index=True)
     cooldown = IntegerField(
         default=DEFAULT_COOLDOWN,
-        help_text="Cooldown period; number of days with no connections before IP is dropped from blocklist",
+        help_text="Cooldown period; number of days with no connections before IP is dropped from django_blocklist",
     )
     reason = CharField(blank=True, max_length=255, default="", db_index=True)
     tally = IntegerField(default=1, help_text="Number of times this IP has been blocked since first_seen")

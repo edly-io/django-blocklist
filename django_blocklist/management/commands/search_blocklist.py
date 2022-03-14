@@ -5,7 +5,7 @@ import sys
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from blocklist.models import DEFAULT_COOLDOWN, BlockedIP
+from django_blocklist.models import DEFAULT_COOLDOWN, BlockedIP
 
 logger = logging.getLogger(__name__)
 DEFAULT_DAYS = settings.BLOCKLIST_CONFIG.get("cooldown") or DEFAULT_COOLDOWN

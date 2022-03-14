@@ -4,7 +4,7 @@ from collections import Counter
 from operator import itemgetter
 from typing import Iterable, Tuple
 
-from blocklist.models import BlockedIP
+from django_blocklist.models import BlockedIP
 from django.db.models import Sum
 from django.contrib.humanize.templatetags.humanize import intcomma, naturaltime
 from django.core.management.base import BaseCommand, CommandError
