@@ -4,21 +4,23 @@ A Django app that implements IP-based blocklisting. It consists of a data model 
 This app is primarily intended for use in situations where server-level blocking is not available, e.g. on platform-as-a-service hosts like PythonAnywhere or Heroku. Being an application-layer solution, it's not as performant as blocking via firewall or web server process, but is suitable for moderate traffic sites. It also offers better integration with the application stack, for easier management.
 
 ## Quick start
-1. Add "django_blocklist" to your INSTALLED_APPS setting like this::
+1. The PyPI package name is `django-blocklist`; add that to your `requirements.txt` or otherwise install it into your project's Python environment.
+
+2. Add "django_blocklist" to your INSTALLED_APPS setting like this::
 
         INSTALLED_APPS = [
         ...
         "django_blocklist"
         ]
 
-2. Add the middleware like this::
+3. Add the middleware like this::
 
        MIDDLEWARE = [
            ...
           "django_blocklist.middleware.BlocklistMiddleware"
        ]
 
-3. Customize settings (optional)::
+4. Customize settings (optional)::
 
        BLOCKLIST_CONFIG = {
            "cooldown": 1,  # Days to expire, default 7
@@ -26,8 +28,8 @@ This app is primarily intended for use in situations where server-level blocking
            "denial-template": "Your IP address {ip} has been blocked for violating our Terms of Service. IP will be unblocked after {cooldown} days."
          }
 
-4. Run `python manage.py migrate` to create the `blocklist_blockedip` table.
-5. Add IPs to the list (via management commands,  `utils.add_to_blocklist`, or the admin).
+5. Run `python manage.py migrate` to create the `blocklist_blockedip` table.
+6. Add IPs to the list (via management commands,  `utils.add_to_blocklist`, or the admin).
 
 ## Management commands
 Django-blocklist includes several management commands:
