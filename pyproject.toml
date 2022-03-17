@@ -4,6 +4,7 @@ version = "1.0"
 description = "A Django app that implements IP-based blocklisting."
 authors = ["Paul Bissex <paul@bissex.net>"]
 license = "BSD-3-Clause"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6"
