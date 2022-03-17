@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class BlocklistConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "blocklist"
+    name = "django_blocklist"
