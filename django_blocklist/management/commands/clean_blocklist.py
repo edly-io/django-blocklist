@@ -38,6 +38,6 @@ class Command(BaseCommand):
             message = f"Would have removed {deletion_count} IPs."
         else:
             message = (
-                f"Removed {deletion_count} IPs from django_blocklist; {total_at_start - deletion_count} remain."
+                f"Removed {deletion_count} IPs from blocklist; {total_at_start - deletion_count} remain."
             )
         logger.info(message)

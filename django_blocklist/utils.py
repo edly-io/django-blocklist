@@ -33,7 +33,7 @@ def get_blocklist(force_cache: bool = False) -> set:
     if blocked_ips is None or force_cache is True:
         blocked_ips = set(o.ip for o in BlockedIP.objects.all())
         cache.set(CACHE_KEY, list(blocked_ips), CACHE_TTL)
-        logger.info(f"Read {len(blocked_ips)} IPs from django_blocklist storage; cached.")
+        logger.info(f"Read {len(blocked_ips)} IPs from blocklist storage; cached.")
     return set(blocked_ips)
 
 

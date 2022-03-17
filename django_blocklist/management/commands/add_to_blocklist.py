@@ -20,7 +20,7 @@ class Command(BaseCommand):
         parser.add_argument("ips", nargs="+", type=str, help="IPs (space-separated) to add")
         parser.add_argument(
             "--cooldown",
-            help=f"Days with no connections before IP is dropped from django_blocklist (default: {COOLDOWN})",
+            help=f"Days with no connections before IP is dropped from blocklist (default: {COOLDOWN})",
         )
         parser.add_argument("--reason", help="'reason' field value for the added IPs", default="")
 
