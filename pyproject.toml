@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-blocklist"
-version = "1.0"
+version = "1.0.1"
 description = "A Django app that implements IP-based blocklisting."
 authors = ["Paul Bissex <paul@bissex.net>"]
 license = "BSD-3-Clause"
