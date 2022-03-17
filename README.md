@@ -4,18 +4,18 @@ A Django app that implements IP-based blocklisting. It consists of a data model 
 This app is primarily intended for use in situations where server-level blocking is not available, e.g. on platform-as-a-service hosts like PythonAnywhere or Heroku. Being an application-layer solution, it's not as performant as blocking via firewall or web server process, but is suitable for moderate traffic sites. It also offers better integration with the application stack, for easier management.
 
 ## Quick start
-1. Add "blocklist" to your INSTALLED_APPS setting like this::
+1. Add "django_blocklist" to your INSTALLED_APPS setting like this::
 
         INSTALLED_APPS = [
         ...
-        "blocklist"
+        "django_blocklist"
         ]
 
 2. Add the middleware like this::
 
        MIDDLEWARE = [
            ...
-          "blocklist.middleware.BlocklistMiddleware"
+          "django_blocklist.middleware.BlocklistMiddleware"
        ]
 
 3. Customize settings (optional)::
