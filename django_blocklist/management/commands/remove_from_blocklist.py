@@ -1,12 +1,9 @@
-"""Remove given IPs from django_blocklist."""
-import datetime
+"""Remove given IPs from blocklist."""
 import logging
-import sys
 
-from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from django_blocklist.models import BlockedIP
+from ...models import BlockedIP
 
 logger = logging.getLogger(__name__)
 

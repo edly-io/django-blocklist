@@ -1,12 +1,7 @@
 """Update specified IPs with new last-seen, reason, or cooldown."""
-import datetime
 import logging
-import sys
 
-from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.core.management.base import BaseCommand
-from django.utils.dateparse import parse_datetime
 
 from ...models import BlockedIP
 

@@ -5,7 +5,7 @@ import unittest
 from django.core.management import call_command
 from io import StringIO
 
-from django_blocklist.models import BlockedIP
+from ..models import BlockedIP
 
 
 @pytest.mark.django_db

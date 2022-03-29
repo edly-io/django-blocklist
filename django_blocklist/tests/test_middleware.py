@@ -35,7 +35,7 @@ class MiddlewareTests(TestCase):
     def test_update_last_seen(self):
         then = datetime.datetime(2020, 2, 29)
         BlockedIP.objects.create(ip="127.0.0.1", first_seen=then, last_seen=then, reason="last-seen test")
-        response = self.client.get("/")
+        self.client.get("/")
         self.assertGreater(BlockedIP.objects.get(reason="last-seen test").last_seen, then)
 
     def test_update_tally(self):

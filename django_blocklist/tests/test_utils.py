@@ -1,11 +1,9 @@
-import datetime
-
-from django.db.utils import IntegrityError
 from django.core.cache import cache
+from django.db.utils import IntegrityError
 from django.http import HttpRequest
 from django.test import TestCase
 
-from django_blocklist.utils import (
+from ..utils import (
     CACHE_KEY,
     add_to_blocklist,
     get_blocklist,

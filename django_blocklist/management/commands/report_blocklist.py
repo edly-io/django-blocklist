@@ -4,10 +4,11 @@ from collections import Counter
 from operator import itemgetter
 from typing import Iterable, Tuple
 
-from django_blocklist.models import BlockedIP
-from django.db.models import Sum
-from django.contrib.humanize.templatetags.humanize import intcomma, naturaltime
+from django.contrib.humanize.templatetags.humanize import intcomma
 from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Sum
+
+from ...models import BlockedIP
 
 
 class Command(BaseCommand):
@@ -30,7 +31,6 @@ class Command(BaseCommand):
         print_roster("Most recent", entries.exclude(tally=1).order_by("-last_seen")[:5])
         longest_lived = None
         how_long = datetime.timedelta(0)
-        # TODO If possible, get the DB to do this calculation instead of iterating through all objects
         for entry in BlockedIP.objects.all():
             active_period = entry.last_seen - entry.first_seen
             if active_period > how_long:

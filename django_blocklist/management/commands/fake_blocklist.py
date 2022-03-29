@@ -5,7 +5,7 @@ from random import randint
 
 from django.core.management.base import BaseCommand
 
-from django_blocklist.models import BlockedIP
+from ...models import BlockedIP
 
 
 def random_fake_ip() -> str:

@@ -1,15 +1,12 @@
 """Add IPs to blocklist."""
 import datetime
 import logging
-import sys
 
-from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.management.base import BaseCommand
 from django.core.validators import validate_ipv46_address
-from django.utils.dateparse import parse_datetime
 
-from ...models import DEFAULT_COOLDOWN, BlockedIP
+from ...models import BlockedIP
 from ...utils import COOLDOWN
 
 logger = logging.getLogger(__name__)

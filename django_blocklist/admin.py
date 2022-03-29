@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 
-from django_blocklist.models import BlockedIP
+from .models import BlockedIP
 
 
 @admin.display(description="Reason")

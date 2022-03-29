@@ -13,7 +13,7 @@ class SettingsTests(TestCase):
         cache.delete(CACHE_KEY)
 
     # override_settings doesn't work for this one, so we patch instead
-    @patch("blocklist.utils.COOLDOWN", 11)
+    @patch("django_blocklist.utils.COOLDOWN", 11)
     def test_cooldown_setting(self):
         add_to_blocklist(["1.1.1.1"])
         blocked = BlockedIP.objects.get(ip="1.1.1.1")

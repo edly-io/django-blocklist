@@ -1,13 +1,11 @@
 """Remove IPs from the blocklist if they have been inactive for the required cooldown."""
 import datetime
 import logging
-import sys
 
 from django.db.models import Min
-from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from django_blocklist.models import BlockedIP
+from ...models import BlockedIP
 
 logger = logging.getLogger(__name__)
 
