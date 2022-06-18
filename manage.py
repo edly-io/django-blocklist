@@ -1,5 +1,11 @@
 #!/usr/bin/env python
-"""Special script to make it easier to run tests and manage migrations."""
+"""
+This script to makes it easier to run tests and manage migrations when working on django-blocklist outside of a Django project.
+
+To run the script, specify DJANGO_SETTINGS_MODULE, e.g.:
+
+    DJANGO_SETTINGS_MODULE=settings ./manage.py
+"""
 
 import django
 import sys
