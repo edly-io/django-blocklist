@@ -1,6 +1,6 @@
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ["localhost"]
 BLOCKLIST_CONFIG = {}
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite3'}}
-INSTALLED_APPS = ['django_blocklist']
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
+INSTALLED_APPS = ["django_blocklist"]
 MIDDLEWARE = ["django_blocklist.middleware.BlocklistMiddleware"]
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = "urls"

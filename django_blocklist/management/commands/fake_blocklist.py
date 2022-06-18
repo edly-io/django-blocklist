@@ -20,7 +20,7 @@ class Command(BaseCommand):
         parser.add_argument("--quantity", type=int, help="Number of fake IPs to generate")
 
     def handle(self, *args, **options):
-        if (quantity := options.get("quantity")) > (max := 256 ** 2):
+        if (quantity := options.get("quantity")) > (max := 256**2):
             sys.exit(f"Can't generate more than {max}, sorry.")
         while quantity:
             entry, created = BlockedIP.objects.get_or_create(ip=random_fake_ip())
