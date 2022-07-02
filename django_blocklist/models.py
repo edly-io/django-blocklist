@@ -17,7 +17,7 @@ class BlockedIP(models.Model):
         help_text="Cooldown period; number of days with no connections before IP is dropped from blocklist",
     )
     reason = CharField(blank=True, max_length=255, default="", db_index=True)
-    tally = IntegerField(default=1, help_text="Number of times this IP has been blocked since first_seen")
+    tally = IntegerField(default=0, help_text="Number of times this IP has been blocked since first_seen")
 
     class Meta:
         get_latest_by = "first_seen"

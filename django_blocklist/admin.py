@@ -21,7 +21,7 @@ def look_up_first_selected_IP(modeladmin, request, queryset):
 
 
 class BlockedIPAdmin(admin.ModelAdmin):
-    list_display = ["ip", "first_seen", "last_seen", cooldown, reason_truncated]
+    list_display = ["ip", "first_seen", "last_seen", "tally", cooldown, reason_truncated]
     list_filter = ["first_seen", "last_seen", "cooldown", "reason"]
     search_fields = ["ip", "reason"]
     actions = [look_up_first_selected_IP]

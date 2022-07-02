@@ -43,4 +43,4 @@ class MiddlewareTests(TestCase):
         self.client.get("/")
         self.client.get("/")
         entry = BlockedIP.objects.get(ip="127.0.0.1")
-        self.assertEqual(entry.tally, 3)
+        self.assertEqual(entry.tally, 2)

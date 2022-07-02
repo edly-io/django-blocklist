@@ -65,7 +65,7 @@ class CommandsTest(unittest.TestCase):
         sys.stdout = out
         today = datetime.datetime.now()
         yesterday = today - datetime.timedelta(days=1)
-        BlockedIP.objects.create(ip="6.6.6.6", first_seen=yesterday, last_seen=today)
+        BlockedIP.objects.create(ip="7.7.7.7", first_seen=yesterday, last_seen=today)
         call_command("report_blocklist")
         result = out.getvalue()
-        self.assertIn("6.6.6.6 -- 1 block", result)
+        self.assertIn("7.7.7.7 -- 0 blocks", result)
