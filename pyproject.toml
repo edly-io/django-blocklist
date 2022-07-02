@@ -6,7 +6,7 @@ authors = ["Paul Bissex <paul@bissex.net>"]
 license = "BSD-3-Clause"
 readme = "README.md"
 homepage = "https://sr.ht/~paulbissex/Django-Blocklist/"
-packages = [ {include = "django_blocklist"}, {include = "django_blocklist/py.typed"} ]
+packages = [ {include = "django_blocklist"} ]
 
 [tool.poetry.dependencies]
 python = "^3.6"
