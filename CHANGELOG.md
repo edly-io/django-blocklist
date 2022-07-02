@@ -1,6 +1,11 @@
 # Django-Blocklist Changelog
 
 
+## 2022-07-02
+### v1.2.0
+* Changed default tally to 0
+* Added tally to admin list view
+
 ## 2022-06-18
 ### v1.1.0
 * Added scaffolding to allow tests to run standalone (outside a project) via `pytest`.

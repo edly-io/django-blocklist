@@ -19,7 +19,7 @@ class Command(BaseCommand):
         if entries.count() == 0:
             raise CommandError("No BlockedIP objects in database.")
         _grand_tally = BlockedIP.objects.all().aggregate(Sum("tally"))["tally__sum"]
-        print(f"Total requests blocked: {intcomma(_grand_tally)}")
+        print(f"Total blocks of listed IPs: {intcomma(_grand_tally)}")
         print(f"Entries in blocklist: {intcomma(entries.count())}")
         _one_day_ago = datetime.datetime.now() - datetime.timedelta(days=1)
         print(f"Active in last 24 hours: {intcomma(entries.filter(last_seen__gte=_one_day_ago).count())}")
