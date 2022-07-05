@@ -22,13 +22,12 @@ class BlocklistMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        try:
-            entry = BlockedIP.objects.get(ip=user_ip_from_request(request))
+        if entry_qs := BlockedIP.objects.filter(ip=user_ip_from_request(request)):
+            entry = entry_qs.get()
             logger.warning("{} request blocked from {}".format(request.method, entry.ip))
             entry.last_seen = datetime.datetime.now()
-            entry.tally = entry.tally + 1
+            entry.tally += 1
             entry.save()
             return HttpResponseBadRequest(denial_template().format(ip=entry.ip, cooldown=entry.cooldown))
-        except BlockedIP.DoesNotExist:
-            response = self.get_response(request)
-            return response
+        else:
+            return self.get_response(request)
