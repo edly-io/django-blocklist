@@ -1,5 +1,11 @@
 # Django-Blocklist Changelog
 
+## 2022-07-09
+### v1.2.1
+* Added requirements files
+* Updated project config files to indicate Django 4 compatibility
+* Fixed exception handling that caused noise in error-tracking tools
+* Minor README edits
 
 ## 2022-07-02
 ### v1.2.0
