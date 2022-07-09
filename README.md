@@ -20,7 +20,7 @@ This app is primarily for situations where server-level blocking is not availabl
           "django_blocklist.middleware.BlocklistMiddleware"
        ]
 
-0. Run `python manage.py migrate` to create the `blocklist_blockedip` table.
+0. Run `python manage.py migrate` to create the `django_blocklist_blockedip` table.
 0. Add IPs to the list (via management commands,  `utils.add_to_blocklist`, or the admin).
 0. Set up a `cron` job or equivalent to run `manage.py clean_blocklist` daily.
 
