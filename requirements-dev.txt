@@ -1,0 +1,4 @@
+pytest
+poetry
+black
+pytest-django

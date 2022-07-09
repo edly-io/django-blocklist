@@ -9,8 +9,8 @@ homepage = "https://sr.ht/~paulbissex/Django-Blocklist/"
 packages = [ {include = "django_blocklist"} ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-Django = "^3.2"
+python = ">=3.6"
+Django = ">=3.2, <5"
 
 [tool.poetry.dev-dependencies]
 
