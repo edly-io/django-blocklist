@@ -4,7 +4,7 @@ This is a [Django][] app that implements IP-based blocklisting. Its `BlocklistMi
 This app is primarily for situations where server-level blocking is not available, e.g. on platform-as-a-service hosts like PythonAnywhere or Heroku. Being an application-layer solution, it's not as performant as blocking via firewall or web server process, but is suitable for moderate traffic sites. It also offers better integration with the application stack, for easier management.
 
 ## Quick start
-1. The PyPI package name is `django-blocklist`; add that to your `requirements.txt` or otherwise install it into your project's Python environment.
+1. The [PyPI package name is `django-blocklist`](https://pypi.org/project/django-blocklist/); add that to your `requirements.txt` or otherwise install it into your project's Python environment.
 
 0. Add "django_blocklist" to your INSTALLED_APPS setting like this:
 
