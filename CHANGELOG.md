@@ -1,5 +1,9 @@
 # Django-Blocklist Changelog
 
+## 2022-07-10
+### v1.2.2
+* Moved to GitLab. No internal changes except updating project URL in config files.
+
 ## 2022-07-09
 ### v1.2.1
 * Added requirements files

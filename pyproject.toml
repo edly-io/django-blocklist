@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "django-blocklist"
-version = "1.2.1"
+version = "1.2.2"
 description = "A Django app that implements IP-based blocklisting."
 authors = ["Paul Bissex <paul@bissex.net>"]
 license = "BSD-3-Clause"
 readme = "README.md"
-homepage = "https://sr.ht/~paulbissex/Django-Blocklist/"
+homepage = "https://gitlab.com/paul_bissex/django-blocklist"
 packages = [ {include = "django_blocklist"} ]
 
 [tool.poetry.dependencies]
