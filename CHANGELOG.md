@@ -1,5 +1,10 @@
 # Django-Blocklist Changelog
 
+## 2022-08-07
+### v1.2.3
+* Fixed bug in "Most recent" report section
+* Updated sample report and linked from README
+
 ## 2022-07-10
 ### v1.2.2
 * Moved to GitLab. No internal changes except updating project URL in config files.
