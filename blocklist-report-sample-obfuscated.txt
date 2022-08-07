@@ -1,21 +1,28 @@
-Total requests blocked: 12,485
-Entries in blocklist: 120
-Active in last 24 hours: 108
-Stale (added over 24h ago, not seen since): 4
+Total blocks of listed IPs: 193,458
+Entries in blocklist: 349
+Active in last 24 hours: 71
+Stale (added over 24h ago, not seen since): 1
 
 Most active:
-192.168.0.16 -- 3,598 blocks in 1 day, 14 hours -- seen 1 day, 14 hours ago -- 3 day cooldown
-192.168.0.189 -- 2,748 blocks in 1 month, 1 week -- seen 8 hours ago -- 3 day cooldown
-192.168.0.82 -- 954 blocks in 3 months, 1 week -- seen 3 hours ago -- 3 day cooldown
-192.168.0.72 -- 796 blocks in 3 months, 1 week -- seen 3 hours ago -- 3 day cooldown
-192.168.0.36 -- 792 blocks in 3 months, 1 week -- seen 8 hours ago -- 3 day cooldown
+192.168.11.213 -- 72,200 blocks in 1 month, 2 weeks -- seen 9 seconds ago -- 5 day cooldown -- TOS violation
+192.168.0.205 -- 60,692 blocks in 2 months, 1 week -- seen 35 seconds ago -- 5 day cooldown -- TOS violation
+192.168.11.244 -- 32,658 blocks in 1 month, 1 week -- seen 51 seconds ago -- 5 day cooldown -- spam
+192.168.162.40 -- 10,680 blocks in 1 month, 1 week -- seen 15 minutes ago -- 30 day cooldown -- TOS violation
+192.168.72.210 -- 2,856 blocks in 3 weeks, 2 days -- seen 9 hours ago -- 5 day cooldown -- TOS violation
 
 Most recent:
-192.168.0.154 -- 406 blocks in 3 months, 1 week -- seen 21 minutes ago -- 3 day cooldown
-192.168.0.199 -- 338 blocks in 3 months, 1 week -- seen 52 minutes ago -- 3 day cooldown
-192.168.0.69 -- 204 blocks in an hour -- seen an hour ago -- 3 day cooldown
-192.168.0.61 -- 600 blocks in 3 months, 1 week -- seen 2 hours ago -- 3 day cooldown
-192.168.0.50 -- 110 blocks in 1 month -- seen 2 hours ago -- 3 day cooldown
+192.168.11.213 -- 72,200 blocks in 1 month, 2 weeks -- seen 9 seconds ago -- 5 day cooldown -- TOS violation
+192.168.0.205 -- 60,692 blocks in 2 months, 1 week -- seen 35 seconds ago -- 5 day cooldown -- TOS violation
+192.168.11.244 -- 32,658 blocks in 1 month, 1 week -- seen 51 seconds ago -- 5 day cooldown -- spam
+192.168.192.38 -- 11 blocks in 1 month, 3 weeks -- seen 10 minutes ago -- 30 day cooldown -- probing
+192.168.159.43 -- 547 blocks in 1 week, 6 days -- seen 12 minutes ago -- 5 day cooldown -- spam
 
 Longest lived:
-192.168.0.154 -- 406 blocks in 3 months, 1 week -- seen 21 minutes ago -- 3 day cooldown
+192.168.210.21 -- 548 blocks in 3 months -- seen 1 day, 10 hours ago -- 30 day cooldown -- spam
+
+IP counts by reason
+-------------------
+ 172 | spam
+ 100 | TOS violation
+  31 | probing
+...

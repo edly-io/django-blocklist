@@ -46,15 +46,7 @@ You can customize the following settings via a `BLOCKLIST_CONFIG` dict in your p
 * `denial-template` &mdash; For the denial response; an f-string with `{ip}` and `{cooldown}` placeholders
 
 ## Reporting
-The `report_blocklist` command gives information about the current collection of IPs, including:
-* Number of listed IPs
-* Total number of blocked requests from listed IPs
-* Number of IPs active in last 24 hours
-* Number of stale IPs (added over 24h ago and not seen since)
-* Five IPs with highest block count
-* Five IPs most recently blocked
-* Longest running entry
-* IP counts by reason
+The `report_blocklist` command gives summary information about the current collection of IPs, including how many requests from those IPs have been blocked. See the [sample report](blocklist-report-sample-obfuscated.txt) for more.
 
 ## Utility methods
 The `utils` module defines two convenience functions for updating the list from your application code:
