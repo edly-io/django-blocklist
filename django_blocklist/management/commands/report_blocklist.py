@@ -28,7 +28,7 @@ class Command(BaseCommand):
         )
         print()
         print_roster("Most active", entries.exclude(tally=0).order_by("-tally")[:5])
-        print_roster("Most recent", entries.exclude(tally=1).order_by("-last_seen")[:5])
+        print_roster("Most recent", entries.exclude(tally=0).order_by("-last_seen")[:5])
         longest_lived = None
         how_long = datetime.timedelta(0)
         for entry in BlockedIP.objects.all():
