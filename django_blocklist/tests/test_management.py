@@ -32,7 +32,7 @@ class CommandsTest(unittest.TestCase):
         self.assertTrue(BlockedIP.objects.filter(ip="2.2.2.2").exists())
 
     def test_add(self):
-        call_command("add_to_blocklist", "3.3.3.3", verbosity=0)
+        call_command("update_blocklist", "3.3.3.3", verbosity=0)
         self.assertTrue(BlockedIP.objects.filter(ip="3.3.3.3").exists())
 
     def test_remove(self):
@@ -44,7 +44,7 @@ class CommandsTest(unittest.TestCase):
         out = StringIO()
         sys.stdout = out
         bad_ip = "foo"
-        call_command("add_to_blocklist", bad_ip, verbosity=0)
+        call_command("update_blocklist", bad_ip, verbosity=0)
         self.assertIn("Invalid", out.getvalue())
 
     def test_update(self):
@@ -53,12 +53,6 @@ class CommandsTest(unittest.TestCase):
         entry = BlockedIP.objects.get(ip="5.5.5.5")
         self.assertEqual(entry.reason, "R2")
         self.assertEqual(entry.cooldown, 2)
-
-    def test_update_date_parsing(self):
-        BlockedIP.objects.create(ip="6.6.6.6")
-        call_command("update_blocklist", "6.6.6.6", last_seen="2099-01-01")
-        entry = BlockedIP.objects.get(ip="6.6.6.6")
-        self.assertEqual(entry.last_seen.date(), datetime.date(2099, 1, 1))
 
     def test_report(self):
         out = StringIO()

@@ -1,5 +1,10 @@
 # Django-Blocklist Changelog
 
+## 2022-08-08
+### v1.3.0
+* Replaced `add_to_blocklist` command with expanded `update_blocklist`
+* Removed `--last-seen` option from `update_blocklist`
+
 ## 2022-08-07
 ### v1.2.3
 * Fixed bug in "Most recent" report section

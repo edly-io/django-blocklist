@@ -1,19 +1,25 @@
-"""Update specified IPs with new last-seen, reason, or cooldown."""
+"""Update blocklist with new IPs, or set metadata on existing IPs."""
 import logging
 
+from django.core.exceptions import ValidationError
 from django.core.management.base import BaseCommand
+from django.core.validators import validate_ipv46_address
 
 from ...models import BlockedIP
+from ...utils import COOLDOWN
+
 
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument("ips", nargs="+", type=str, help="IPs (space-separated) to update")
-        parser.add_argument("--cooldown")
-        parser.add_argument("--reason")
-        parser.add_argument("--last-seen", help="Datetime in ISO8601 format")
+        parser.add_argument("ips", nargs="+", type=str, help="IPs (space-separated)")
+        parser.add_argument(
+            "--cooldown",
+            help=f"Days with no requests before IP is dropped from blocklist (default: {COOLDOWN})",
+        )
+        parser.add_argument("--reason", help="'reason' field value for these IPs", default="")
 
     help = __doc__
 
@@ -21,19 +27,16 @@ class Command(BaseCommand):
         ips = options.get("ips")
         cooldown = options.get("cooldown")
         reason = options.get("reason")
-        last_seen = options.get("last_seen")
         for ip in ips:
             try:
-                entry = BlockedIP.objects.get(ip=ip)
-            except BlockedIP.DoesNotExist:
-                print(f"{ip} not found")
+                validate_ipv46_address(ip)
+            except ValidationError:
+                print(f"Invalid IP: {ip}")
                 continue
-            else:
-                if reason:
-                    entry.reason = reason
-                if cooldown:
-                    entry.cooldown = cooldown
-                if last_seen:
-                    entry.last_seen = last_seen
-                entry.save()
-                print(f"Updated existing entry for {ip}")
+            entry, created = BlockedIP.objects.get_or_create(ip=ip)
+            if reason:
+                entry.reason = reason
+            if cooldown:
+                entry.cooldown = cooldown
+            entry.save()
+            print(f"{'Created' if created else 'Updated'} entry for {ip}")

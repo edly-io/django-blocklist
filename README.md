@@ -27,13 +27,12 @@ This app is primarily for situations where server-level blocking is not availabl
 ## Management commands
 Django-blocklist includes several management commands:
 
-* `add_to_blocklist` &mdash; (one or more IPs)
-* `remove_from_blocklist` &mdash; (one or more IPs)
-* `search_blocklist` &mdash; look for an IP in the list; in addition to info on stdout, returns an exit code of 0 if successful
-* `update_blocklist` &mdash; change the `reason` or `cooldown` values for existing entries
-* `import_blocklist` &mdash; convenience command for importing IPs from a file
-* `report_blocklist` &mdash; information on the current entries
 * `clean_blocklist` &mdash; remove entries that have fulfilled their cooldown period
+* `import_blocklist` &mdash; convenience command for importing IPs from a file
+* `remove_from_blocklist` &mdash; remove one or more IPs
+* `report_blocklist` &mdash; information on the current entries
+* `search_blocklist` &mdash; look for an IP in the list; in addition to info on stdout, returns an exit code of 0 if successful
+* `update_blocklist` &mdash; add/update one or more IPs, with optional `--reason` or `--cooldown` values
 
 The `--help` for each of these details its available options.
 
