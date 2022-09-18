@@ -45,7 +45,7 @@ You can customize the following settings via a `BLOCKLIST_CONFIG` dict in your p
 * `denial-template` &mdash; For the denial response; an f-string with `{ip}` and `{cooldown}` placeholders
 
 ## Reporting
-The `report_blocklist` command gives summary information about the current collection of IPs, including how many requests from those IPs have been blocked. See the [sample report](blocklist-report-sample-obfuscated.txt) for more.
+The `report_blocklist` command gives summary information about the current collection of IPs, including how many requests from those IPs have been blocked. See the [sample report][] for more.
 
 ## Utility methods
 The `utils` module defines two convenience functions for updating the list from your application code:
@@ -53,3 +53,4 @@ The `utils` module defines two convenience functions for updating the list from 
 * `remove_from_blocklist(ip: str)` removes an entry, returning `True` if successful
 
 [django]: https://www.djangoproject.com/
+[sample report]: https://gitlab.com/paul_bissex/django-blocklist/-/blob/trunk/blocklist-report-sample-obfuscated.txt
