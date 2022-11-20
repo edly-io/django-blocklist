@@ -22,6 +22,8 @@ class BlocklistMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
+        if settings.DEBUG:
+            return self.get_response(request)
         if entry_qs := BlockedIP.objects.filter(ip=user_ip_from_request(request)):
             entry = entry_qs.get()
             logger.warning("{} request blocked from {}".format(request.method, entry.ip))
