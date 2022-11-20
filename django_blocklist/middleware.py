@@ -24,7 +24,7 @@ class BlocklistMiddleware(object):
     def __call__(self, request):
         if settings.DEBUG:
             return self.get_response(request)
-        if entry_qs := BlockedIP.objects.filter(ip=user_ip_from_request(request)):
+        elif entry_qs := BlockedIP.objects.filter(ip=user_ip_from_request(request)):
             entry = entry_qs.get()
             logger.warning("{} request blocked from {}".format(request.method, entry.ip))
             entry.last_seen = datetime.datetime.now()

@@ -1,5 +1,9 @@
 # Django-Blocklist Changelog
 
+## 2022-11-20
+### v1.3.1
+* Middleware now only runs when `settings.DEBUG` is `False`
+
 ## 2022-08-08
 ### v1.3.0
 * Replaced `add_to_blocklist` command with expanded `update_blocklist`
