@@ -1,8 +1,8 @@
 # Django-Blocklist Changelog
 
 ## 2022-12-10
-### v1.3.3
-* Minor bugfix
+### v1.3.3, v1.3.4
+* Minor bugfixes
 ### v1.3.2
 * "Most active" section of report now sorts by, and shows, rate per hour
 

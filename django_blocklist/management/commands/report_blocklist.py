@@ -57,7 +57,7 @@ def print_roster(title: str, queryset, activity_calc: bool = False) -> None:
         else:
             print(perp.verbose_str())
     if activity_calc:
-        most_active = sorted(activity.items(), key=itemgetter(1), reverse=True)
+        most_active = sorted(activity.items(), key=itemgetter(1), reverse=True)[:5]
         for perp, per_hour in most_active:
             print(f"{perp.verbose_str()} -- {round(per_hour)} per hour")
     print()
