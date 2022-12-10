@@ -27,8 +27,8 @@ class Command(BaseCommand):
             f"Stale (added over 24h ago, not seen since): {intcomma(entries.filter(tally=1, last_seen__lt=_one_day_ago).count())}"
         )
         print()
-        print_roster("Most active", entries.exclude(tally=0).order_by("-tally")[:5])
         print_roster("Most recent", entries.exclude(tally=0).order_by("-last_seen")[:5])
+        print_roster("Most active", most_active(entries), activity=True)
         longest_lived = None
         how_long = datetime.timedelta(0)
         for entry in BlockedIP.objects.all():
@@ -45,10 +45,14 @@ class Command(BaseCommand):
                 print(f"{count: {_width}} | {reason}")
 
 
-def print_roster(title: str, queryset):
+def print_roster(title: str, queryset, activity=False):
     print(f"{title}:")
     for perp in queryset:
-        print(perp.verbose_str())
+        if activity and perp.tally != 0:
+            rate = perp.tally / (perp.last_seen - perp.first_seen).days / 24
+            print(f"{perp} -- {round(rate)} per hour")
+        else:
+            print(perp.verbose_str())
     print()
 
 
@@ -56,3 +60,7 @@ def reason_counts() -> Iterable[Tuple[str, int]]:
     reason_data = Counter(BlockedIP.objects.exclude(reason="").values_list("reason"))
     tuples = [(str(r[0][0]), r[1]) for r in reason_data.items()]
     return sorted(tuples, key=itemgetter(1), reverse=True)
+
+
+def most_active(entries) -> list:
+    return entries.exclude(tally=0).order_by("-last_seen")[:5]

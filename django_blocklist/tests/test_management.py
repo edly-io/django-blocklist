@@ -60,6 +60,8 @@ class CommandsTest(unittest.TestCase):
         today = datetime.datetime.now()
         yesterday = today - datetime.timedelta(days=1)
         BlockedIP.objects.create(ip="7.7.7.7", first_seen=yesterday, last_seen=today)
+        BlockedIP.objects.create(ip="8.8.8.8", first_seen=yesterday, last_seen=today, tally=240)
         call_command("report_blocklist")
         result = out.getvalue()
         self.assertIn("7.7.7.7 -- 0 blocks", result)
+        self.assertIn("8.8.8.8 -- 10 blocks per hour", result)
