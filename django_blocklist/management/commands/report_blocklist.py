@@ -28,7 +28,7 @@ class Command(BaseCommand):
         )
         print()
         print_roster("Most recent", entries.exclude(tally=0).order_by("-last_seen")[:5])
-        print_roster("Most active", most_active(entries), activity=True)
+        print_roster("Most active", entries.filter(tally__gt=0), activity_calc=True)
         longest_lived = None
         how_long = datetime.timedelta(0)
         for entry in BlockedIP.objects.all():
@@ -45,14 +45,20 @@ class Command(BaseCommand):
                 print(f"{count: {_width}} | {reason}")
 
 
-def print_roster(title: str, queryset, activity=False):
+def print_roster(title: str, queryset, activity_calc: bool = False) -> None:
     print(f"{title}:")
+    activity = {}
     for perp in queryset:
-        if activity and perp.tally != 0:
-            rate = perp.tally / (perp.last_seen - perp.first_seen).days / 24
-            print(f"{perp} -- {round(rate)} per hour")
+        # For each IP, either print a line or calculate the rate, depending on activity_calc
+        if activity_calc:
+            per_hour = perp.tally / (perp.last_seen - perp.first_seen).days / 24
+            activity[perp] = per_hour
         else:
             print(perp.verbose_str())
+    if activity_calc:
+        most_active = sorted(activity.items(), key=itemgetter(1), reverse=True)
+        for perp, per_hour in most_active:
+            print(f"{perp.verbose_str()} -- {round(per_hour)} per hour")
     print()
 
 
@@ -60,7 +66,3 @@ def reason_counts() -> Iterable[Tuple[str, int]]:
     reason_data = Counter(BlockedIP.objects.exclude(reason="").values_list("reason"))
     tuples = [(str(r[0][0]), r[1]) for r in reason_data.items()]
     return sorted(tuples, key=itemgetter(1), reverse=True)
-
-
-def most_active(entries) -> list:
-    return entries.exclude(tally=0).order_by("-last_seen")[:5]
