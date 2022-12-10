@@ -51,7 +51,8 @@ def print_roster(title: str, queryset, activity_calc: bool = False) -> None:
     for perp in queryset:
         # For each IP, either print a line or calculate the rate, depending on activity_calc
         if activity_calc:
-            per_hour = perp.tally / (perp.last_seen - perp.first_seen).days / 24
+            days = max(1, (perp.last_seen - perp.first_seen).days)
+            per_hour = perp.tally / days / 24
             activity[perp] = per_hour
         else:
             print(perp.verbose_str())
