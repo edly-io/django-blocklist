@@ -4,11 +4,11 @@ Active in last 24 hours: 71
 Stale (added over 24h ago, not seen since): 1
 
 Most active:
-192.168.11.213 -- 72,200 blocks in 1 month, 2 weeks -- seen 9 seconds ago -- 5 day cooldown -- TOS violation
-192.168.0.205 -- 60,692 blocks in 2 months, 1 week -- seen 35 seconds ago -- 5 day cooldown -- TOS violation
-192.168.11.244 -- 32,658 blocks in 1 month, 1 week -- seen 51 seconds ago -- 5 day cooldown -- spam
-192.168.162.40 -- 10,680 blocks in 1 month, 1 week -- seen 15 minutes ago -- 30 day cooldown -- TOS violation
-192.168.72.210 -- 2,856 blocks in 3 weeks, 2 days -- seen 9 hours ago -- 5 day cooldown -- TOS violation
+192.168.11.213 -- 72,200 blocks in 1 month, 2 weeks -- seen 9 seconds ago -- 5 day cooldown -- TOS violation -- 10 per hour
+192.168.0.205 -- 60,692 blocks in 2 months, 1 week -- seen 35 seconds ago -- 5 day cooldown -- TOS violation -- 9 per hour
+192.168.11.244 -- 32,658 blocks in 1 month, 1 week -- seen 51 seconds ago -- 5 day cooldown -- spam -- 8 per hour
+192.168.162.40 -- 10,680 blocks in 1 month, 1 week -- seen 15 minutes ago -- 30 day cooldown -- TOS violation -- 7 per hour
+192.168.72.210 -- 2,856 blocks in 3 weeks, 2 days -- seen 9 hours ago -- 5 day cooldown -- TOS violation -- 6 per hour
 
 Most recent:
 192.168.11.213 -- 72,200 blocks in 1 month, 2 weeks -- seen 9 seconds ago -- 5 day cooldown -- TOS violation

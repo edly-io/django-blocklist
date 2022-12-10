@@ -1,5 +1,9 @@
 # Django-Blocklist Changelog
 
+## 2022-12-10
+### v1.3.2
+* "Most active" section of report now sorts by, and shows, rate per hour
+
 ## 2022-11-20
 ### v1.3.1
 * Middleware now only runs when `settings.DEBUG` is `False`
