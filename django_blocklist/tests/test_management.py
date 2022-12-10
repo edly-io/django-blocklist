@@ -64,4 +64,4 @@ class CommandsTest(unittest.TestCase):
         call_command("report_blocklist")
         result = out.getvalue()
         self.assertIn("7.7.7.7 -- 0 blocks", result)
-        self.assertIn("8.8.8.8 -- 10 blocks per hour", result)
+        self.assertIn("8.8.8.8 -- 10 per hour", result)
