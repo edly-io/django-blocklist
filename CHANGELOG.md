@@ -1,6 +1,8 @@
 # Django-Blocklist Changelog
 
 ## 2023-01-25
+### v1.4.1
+* Minor bugfixes
 ### v1.4.0
 * Added --reason option on report_blocklist
 
