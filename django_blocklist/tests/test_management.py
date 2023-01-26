@@ -65,3 +65,14 @@ class CommandsTest(unittest.TestCase):
         result = out.getvalue()
         self.assertIn("7.7.7.7 -- 0 blocks", result)
         self.assertIn("10 per hour", result)
+
+    def test_reason_report(self):
+        out = StringIO()
+        sys.stdout = out
+        reasons = ["A", "B"]
+        for n, reason in enumerate(reasons):
+            BlockedIP.objects.create(ip=f"{n}.{n}.{n}.{n}", reason=reason)
+        call_command("report_blocklist", reason=reasons[0])
+        result = out.getvalue()
+        assert BlockedIP.objects.count() == 2
+        self.assertIn("Entries in blocklist: 1", result)

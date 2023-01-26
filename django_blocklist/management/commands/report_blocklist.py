@@ -14,10 +14,17 @@ from ...models import BlockedIP
 class Command(BaseCommand):
     help = __doc__
 
+    def add_arguments(self, parser):
+        parser.add_argument("--reason", default=[], action="append", help="Restrict report to IPs with this reason (muliple reasons can be passed)")
+
+    help = __doc__
+
     def handle(self, *args, **options):
         entries = BlockedIP.objects.all()
+        if selected_reasons := options.get("reason"):
+            entries = entries.filter(reason__in=selected_reasons)
         if entries.count() == 0:
-            raise CommandError("No BlockedIP objects in database.")
+            raise CommandError("No BlockedIP objects for report.")
         _grand_tally = BlockedIP.objects.all().aggregate(Sum("tally"))["tally__sum"]
         print(f"Total blocks of listed IPs: {intcomma(_grand_tally)}")
         print(f"Entries in blocklist: {intcomma(entries.count())}")
@@ -37,12 +44,12 @@ class Command(BaseCommand):
                 longest_lived, how_long = entry, active_period
         if longest_lived is not None:
             print(f"Longest lived:\n{longest_lived.verbose_str()}")
-        reasons = reason_counts()
-        if reasons:
+        if counts := reason_counts():
             print("\nIP counts by reason\n-------------------")
-            _width = len(str(reasons[0][1])) + 1
-            for reason, count in reasons:
-                print(f"{count: {_width}} | {reason}")
+            _width = len(str(counts[0][1])) + 1
+            for reason, count in counts:
+                if not selected_reasons or reason in selected_reasons:
+                    print(f"{count: {_width}} | {reason}")
 
 
 def print_roster(title: str, queryset, activity_calc: bool = False) -> None:
