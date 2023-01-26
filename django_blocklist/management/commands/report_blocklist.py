@@ -30,7 +30,7 @@ class Command(BaseCommand):
             entries = entries.filter(reason__in=selected_reasons)
         if entries.count() == 0:
             raise CommandError("No BlockedIP objects for report.")
-        _grand_tally = BlockedIP.objects.all().aggregate(Sum("tally"))["tally__sum"]
+        _grand_tally = entries.aggregate(Sum("tally"))["tally__sum"]
         print(f"Total blocks of listed IPs: {intcomma(_grand_tally)}")
         print(f"Entries in blocklist: {intcomma(entries.count())}")
         _one_day_ago = datetime.datetime.now() - datetime.timedelta(days=1)
@@ -43,7 +43,7 @@ class Command(BaseCommand):
         print_roster("Most active", entries.filter(tally__gt=0).order_by("-tally"), activity_calc=True)
         longest_lived = None
         how_long = datetime.timedelta(0)
-        for entry in BlockedIP.objects.all():
+        for entry in entries:
             active_period = entry.last_seen - entry.first_seen
             if active_period > how_long:
                 longest_lived, how_long = entry, active_period
