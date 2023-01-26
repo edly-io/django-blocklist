@@ -15,7 +15,12 @@ class Command(BaseCommand):
     help = __doc__
 
     def add_arguments(self, parser):
-        parser.add_argument("--reason", default=[], action="append", help="Restrict report to IPs with this reason (muliple reasons can be passed)")
+        parser.add_argument(
+            "--reason",
+            default=[],
+            action="append",
+            help="Restrict report to IPs with this reason (muliple reasons can be passed)",
+        )
 
     help = __doc__
 
