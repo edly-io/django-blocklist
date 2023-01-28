@@ -2,7 +2,7 @@ import datetime
 
 from django.contrib.humanize.templatetags.humanize import intcomma, naturaltime
 from django.db import models
-from django.db.models.fields import CharField, DateTimeField, GenericIPAddressField, IntegerField
+from django.db.models import CharField, DateTimeField, GenericIPAddressField, IntegerField
 from django.utils import timezone
 
 DEFAULT_COOLDOWN = 7

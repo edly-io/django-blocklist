@@ -1,4 +1,5 @@
-pytest
-poetry
 black
+django-stubs
+poetry
+pytest
 pytest-django
