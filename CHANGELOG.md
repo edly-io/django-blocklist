@@ -1,5 +1,9 @@
 # Django-Blocklist Changelog
 
+## 2023-02-23
+### v1.5.0
+* Added "Days left" column to admin list
+
 ## 2023-01-25
 ### v1.4.1
 * Minor bugfixes
