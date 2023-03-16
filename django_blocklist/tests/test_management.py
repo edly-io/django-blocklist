@@ -53,6 +53,12 @@ class CommandsTest(unittest.TestCase):
         self.assertEqual(entry.reason, "R2")
         self.assertEqual(entry.cooldown, 2)
 
+    def test_update_creation_message(self):
+        """Newly created entry should be reported"""
+        sys.stdout = (out := StringIO())
+        call_command("update_blocklist", "5.5.6.6")
+        self.assertIn("Created", out.getvalue())
+
     def test_update_changed_message(self):
         """If we update both fields, output should say so"""
         sys.stdout = (out := StringIO())

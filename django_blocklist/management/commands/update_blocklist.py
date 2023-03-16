@@ -41,7 +41,7 @@ class Command(BaseCommand):
             if cooldown and entry.cooldown != cooldown:
                 entry.cooldown = cooldown
                 updated.append("cooldown")
-            if updated:
+            if updated or created:
                 entry.save()
                 summary = "Created entry" if created else f"Updated {' and '.join(updated)}"
                 print(f"{summary} for {ip}")
