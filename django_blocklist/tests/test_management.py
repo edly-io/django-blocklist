@@ -41,8 +41,7 @@ class CommandsTest(unittest.TestCase):
         self.assertEqual(BlockedIP.objects.filter(ip="4.4.4.4").count(), 0)
 
     def test_add_invalid(self):
-        out = StringIO()
-        sys.stdout = out
+        sys.stdout = (out := StringIO())
         bad_ip = "foo"
         call_command("update_blocklist", bad_ip, verbosity=0)
         self.assertIn("Invalid", out.getvalue())
@@ -54,21 +53,33 @@ class CommandsTest(unittest.TestCase):
         self.assertEqual(entry.reason, "R2")
         self.assertEqual(entry.cooldown, 2)
 
+    def test_update_changed_message(self):
+        """If we update both fields, output should say so"""
+        sys.stdout = (out := StringIO())
+        BlockedIP.objects.create(ip="6.6.6.6", reason="R1", cooldown=1)
+        call_command("update_blocklist", "6.6.6.6", reason="R2", cooldown=2)
+        self.assertIn("reason and cooldown", out.getvalue())
+
+    def test_update_no_message_if_no_change(self):
+        """If we 'update' with the existing values, IP shouldn't show in output"""
+        sys.stdout = (out := StringIO())
+        BlockedIP.objects.create(ip="7.7.7.7", reason="R1", cooldown=1)
+        call_command("update_blocklist", "7.7.7.7", reason="R1", cooldown=1)
+        self.assertNotIn("7.7.7.7", out.getvalue())
+
     def test_report(self):
-        out = StringIO()
-        sys.stdout = out
+        sys.stdout = (out := StringIO())
         today = datetime.datetime.now()
         yesterday = today - datetime.timedelta(days=1)
-        BlockedIP.objects.create(ip="7.7.7.7", first_seen=yesterday, last_seen=today)
-        BlockedIP.objects.create(ip="8.8.8.8", first_seen=yesterday, last_seen=today, tally=240)
+        BlockedIP.objects.create(ip="8.8.8.8", first_seen=yesterday, last_seen=today)
+        BlockedIP.objects.create(ip="9.9.9.9", first_seen=yesterday, last_seen=today, tally=240)
         call_command("report_blocklist")
         result = out.getvalue()
-        self.assertIn("7.7.7.7 -- 0 blocks", result)
+        self.assertIn("8.8.8.8 -- 0 blocks", result)
         self.assertIn("10 per hour", result)
 
     def test_reason_report(self):
-        out = StringIO()
-        sys.stdout = out
+        sys.stdout = (out := StringIO())
         reasons = ["A", "B"]
         for n, reason in enumerate(reasons):
             BlockedIP.objects.create(ip=f"{n}.{n}.{n}.{n}", reason=reason)

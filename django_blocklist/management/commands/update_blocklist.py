@@ -34,9 +34,14 @@ class Command(BaseCommand):
                 print(f"Invalid IP: {ip}")
                 continue
             entry, created = BlockedIP.objects.get_or_create(ip=ip)
-            if reason:
+            updated = []
+            if reason and entry.reason != reason:
                 entry.reason = reason
-            if cooldown:
+                updated.append("reason")
+            if cooldown and entry.cooldown != cooldown:
                 entry.cooldown = cooldown
-            entry.save()
-            print(f"{'Created' if created else 'Updated'} entry for {ip}")
+                updated.append("cooldown")
+            if updated:
+                entry.save()
+                summary = "Created entry" if created else f"Updated {' and '.join(updated)}"
+                print(f"{summary} for {ip}")
