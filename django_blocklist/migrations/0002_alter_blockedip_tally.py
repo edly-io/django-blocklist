@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_blocklist', '0001_initial'),
+        ("django_blocklist", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='blockedip',
-            name='tally',
-            field=models.IntegerField(default=0, help_text='Number of times this IP has been blocked since first_seen'),
+            model_name="blockedip",
+            name="tally",
+            field=models.IntegerField(
+                default=0, help_text="Number of times this IP has been blocked since first_seen"
+            ),
         ),
     ]
