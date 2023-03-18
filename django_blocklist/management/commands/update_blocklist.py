@@ -38,7 +38,7 @@ class Command(BaseCommand):
             if reason and entry.reason != reason:
                 entry.reason = reason
                 updated.append("reason")
-            if cooldown and entry.cooldown != cooldown:
+            if cooldown and entry.cooldown != (cooldown := int(cooldown)):
                 entry.cooldown = cooldown
                 updated.append("cooldown")
             if updated or created:
