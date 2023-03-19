@@ -12,9 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def denial_template():
-    return (
-        settings.BLOCKLIST_CONFIG.get("denial-template") or Config.defaults["denial-template"]
-        )
+    return settings.BLOCKLIST_CONFIG.get("denial-template") or Config.defaults["denial-template"]
 
 
 class BlocklistMiddleware(object):

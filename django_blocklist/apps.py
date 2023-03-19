@@ -7,4 +7,4 @@ class Config(AppConfig):
     defaults = {
         "cooldown": 7,
         "denial-template": "Your IP address {ip} has been blocked. Try again in {cooldown} days.",
-        }
+    }
