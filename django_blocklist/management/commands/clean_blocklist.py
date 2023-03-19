@@ -39,3 +39,5 @@ class Command(BaseCommand):
                 f"Removed {deletion_count} IPs from blocklist; {total_at_start - deletion_count} remain."
             )
         logger.info(message)
+        if self.verbosity > 0:
+            print(message)
