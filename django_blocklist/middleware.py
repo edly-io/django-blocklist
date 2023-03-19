@@ -4,6 +4,7 @@ import logging
 from django.conf import settings
 from django.http import HttpResponseBadRequest
 
+from .apps import Config
 from .models import BlockedIP
 from .utils import user_ip_from_request
 
@@ -12,9 +13,8 @@ logger = logging.getLogger(__name__)
 
 def denial_template():
     return (
-        settings.BLOCKLIST_CONFIG.get("denial-template")
-        or "Your IP address {ip} has been blocked. Try again in {cooldown} days."
-    )
+        settings.BLOCKLIST_CONFIG.get("denial-template") or Config.defaults["denial-template"]
+        )
 
 
 class BlocklistMiddleware(object):

@@ -5,7 +5,10 @@ from django.db import models
 from django.db.models import CharField, DateTimeField, GenericIPAddressField, IntegerField
 from django.utils import timezone
 
-DEFAULT_COOLDOWN = 7
+from .apps import Config
+
+
+DEFAULT_COOLDOWN = Config.defaults["cooldown"]
 
 
 class BlockedIP(models.Model):
