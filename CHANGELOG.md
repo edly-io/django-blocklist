@@ -1,5 +1,11 @@
 # Django-Blocklist Changelog
 
+## 2023-03-19
+### v1.6.0
+* Moved all default settings values to apps.Config
+* clean_blocklist now prints summary when verbosity > 0
+* update_blocklist now gives info on which fields were updated
+
 ## 2023-02-23
 ### v1.5.0
 * Added "Days left" column to admin list
