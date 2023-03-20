@@ -5,13 +5,14 @@ from django.conf import settings
 from django.core.cache import cache
 from django.http import HttpRequest
 
-from .models import DEFAULT_COOLDOWN, BlockedIP
+from .apps import Config
+from .models import BlockedIP
 
 logger = logging.getLogger(__name__)
 
 CACHE_KEY = "django-blocklist-ips"
-CACHE_TTL = settings.BLOCKLIST_CONFIG.get("cache-ttl", 60)
-COOLDOWN = settings.BLOCKLIST_CONFIG.get("cooldown", DEFAULT_COOLDOWN)
+CACHE_TTL = settings.BLOCKLIST_CONFIG.get("cache-ttl", Config.defaults["cache-ttl"])
+COOLDOWN = settings.BLOCKLIST_CONFIG.get("cooldown", Config.defaults["cooldown"])
 
 
 def user_ip_from_request(request: HttpRequest) -> str:

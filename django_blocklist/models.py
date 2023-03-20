@@ -8,15 +8,12 @@ from django.utils import timezone
 from .apps import Config
 
 
-DEFAULT_COOLDOWN = Config.defaults["cooldown"]
-
-
 class BlockedIP(models.Model):
     ip = GenericIPAddressField(primary_key=True, verbose_name="IP")
     first_seen = DateTimeField(default=timezone.now, db_index=True)
     last_seen = DateTimeField(blank=True, null=True, db_index=True)
     cooldown = IntegerField(
-        default=DEFAULT_COOLDOWN,
+        default=Config.defaults["cooldown"],
         help_text="Cooldown period; number of days with no connections before IP is dropped from blocklist",
     )
     reason = CharField(blank=True, max_length=255, default="", db_index=True)
