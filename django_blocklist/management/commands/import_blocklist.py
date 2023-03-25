@@ -7,10 +7,11 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils.dateparse import parse_datetime
 
-from ...models import DEFAULT_COOLDOWN, BlockedIP
+from ...apps import Config
+from ...models import BlockedIP
 
 logger = logging.getLogger(__name__)
-DEFAULT_DAYS = settings.BLOCKLIST_CONFIG.get("cooldown") or DEFAULT_COOLDOWN
+DEFAULT_DAYS = settings.BLOCKLIST_CONFIG.get("cooldown") or Config.defaults["cooldown"]
 
 
 class Command(BaseCommand):

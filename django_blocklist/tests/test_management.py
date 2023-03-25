@@ -101,8 +101,10 @@ class CommandsTest(unittest.TestCase):
         sys.stdout = (out := StringIO())
         reasons = ["A", "B"]
         for n, reason in enumerate(reasons):
-            BlockedIP.objects.create(ip=f"{n}.{n}.{n}.{n}", reason=reason)
-        call_command("report_blocklist", reason=reasons[0])
+            BlockedIP.objects.create(ip=f"{n}.{n}.{n}.{n}", reason=reason, tally=1)
+        call_command("report_blocklist", reason="A")
         result = out.getvalue()
+        # import pdb;pdb.set_trace()
         assert BlockedIP.objects.count() == 2
         self.assertIn("Entries in blocklist: 1", result)
+        self.assertIn("        1 |         1 | A", result)

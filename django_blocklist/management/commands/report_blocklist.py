@@ -49,12 +49,11 @@ class Command(BaseCommand):
                 longest_lived, how_long = entry, active_period
         if longest_lived is not None:
             print(f"Longest lived:\n{longest_lived.verbose_str()}")
-        if counts := reason_counts():
-            print("\nIP counts by reason\n-------------------")
-            _width = len(str(counts[0][1])) + 1
-            for reason, count in counts:
+        if stats := reason_stats():
+            print("Tally and IP count by reason\n----------------------------")
+            for tally, ip_count, reason in stats:
                 if not selected_reasons or reason in selected_reasons:
-                    print(f"{count: {_width}} | {reason}")
+                    print(f"{tally:9} | {ip_count:9} | {reason}")
 
 
 def print_roster(title: str, queryset, activity_calc: bool = False) -> None:
@@ -75,7 +74,13 @@ def print_roster(title: str, queryset, activity_calc: bool = False) -> None:
     print()
 
 
-def reason_counts() -> Iterable[Tuple[str, int]]:
-    reason_data = Counter(BlockedIP.objects.exclude(reason="").values_list("reason"))
-    tuples = [(str(r[0][0]), r[1]) for r in reason_data.items()]
-    return sorted(tuples, key=itemgetter(1), reverse=True)
+def reason_stats() -> Iterable[Tuple[int, int, str]]:
+    """Gather ip-count and grand tally stats for each reason"""
+    stats = Counter(BlockedIP.objects.exclude(reason="").values_list("reason"))
+    tuples = []
+    for reason_datum in stats.items():
+        reason = str(reason_datum[0][0])
+        ip_count = reason_datum[1]
+        tally = BlockedIP.objects.filter(reason=reason).aggregate(tally=Sum('tally'))["tally"]
+        tuples.append((tally, ip_count, reason))
+    return sorted(tuples, key=itemgetter(0), reverse=True)
