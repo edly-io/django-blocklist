@@ -81,6 +81,6 @@ def reason_stats() -> Iterable[Tuple[int, int, str]]:
     for reason_datum in stats.items():
         reason = str(reason_datum[0][0])
         ip_count = reason_datum[1]
-        tally = BlockedIP.objects.filter(reason=reason).aggregate(tally=Sum('tally'))["tally"]
+        tally = BlockedIP.objects.filter(reason=reason).aggregate(tally=Sum("tally"))["tally"]
         tuples.append((tally, ip_count, reason))
     return sorted(tuples, key=itemgetter(0), reverse=True)
