@@ -1,5 +1,9 @@
 # Django-Blocklist Changelog
 
+## 2023-07-04
+### v1.6.1
+* Fixed bug related to settings restrucuring
+
 ## 2023-03-19
 ### v1.6.0
 * Moved all default settings values to apps.Config
