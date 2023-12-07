@@ -6,10 +6,12 @@ To run the script, specify DJANGO_SETTINGS_MODULE, e.g.:
 
     DJANGO_SETTINGS_MODULE=settings ./manage.py
 """
-
+import os
 import django
 import sys
 from django.core.management import execute_from_command_line
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 django.setup()
 execute_from_command_line(sys.argv)

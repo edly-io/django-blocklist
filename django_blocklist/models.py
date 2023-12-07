@@ -1,3 +1,4 @@
+import pytz
 import datetime
 
 from django.contrib.humanize.templatetags.humanize import intcomma, naturaltime
@@ -39,7 +40,7 @@ class BlockedIP(models.Model):
 
     def has_expired(self):
         """Has the IP cooled long enough to be removed from the list?"""
-        quiet_time = datetime.datetime.now() - self.last_seen
+        quiet_time = datetime.datetime.now(pytz.UTC) - self.last_seen
         return quiet_time.days >= self.cooldown
 
     def save(self, *args, **kwargs):

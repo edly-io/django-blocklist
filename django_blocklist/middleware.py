@@ -1,3 +1,4 @@
+import pytz
 import datetime
 import logging
 
@@ -25,7 +26,7 @@ class BlocklistMiddleware(object):
         elif entry_qs := BlockedIP.objects.filter(ip=user_ip_from_request(request)):
             entry = entry_qs.get()
             logger.warning("{} request blocked from {}".format(request.method, entry.ip))
-            entry.last_seen = datetime.datetime.now()
+            entry.last_seen = datetime.datetime.now(pytz.UTC)
             entry.tally += 1
             entry.save()
             return HttpResponseBadRequest(denial_template().format(ip=entry.ip, cooldown=entry.cooldown))

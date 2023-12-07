@@ -1,4 +1,5 @@
-from datetime import datetime, timezone
+import pytz
+import datetime
 
 from django.contrib import admin
 from django.http import HttpResponseRedirect
@@ -19,7 +20,7 @@ def cooldown(entry: BlockedIP) -> str:
 @admin.display(description="Days left")
 def days_left(entry: BlockedIP) -> str:
     if entry.last_seen:
-        remaining = f"{entry.cooldown - (datetime.now(timezone.utc) - entry.last_seen).days}"
+        remaining = f"{entry.cooldown - (datetime.datetime.now(pytz.UTC) - entry.last_seen).days}"
     else:
         remaining = ""
     return remaining

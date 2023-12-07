@@ -1,4 +1,5 @@
 """Remove IPs from the blocklist if they have been inactive for the required cooldown."""
+import pytz
 import datetime
 import logging
 
@@ -24,7 +25,7 @@ class Command(BaseCommand):
         total_at_start = BlockedIP.objects.count()
         deletion_count = 0
         shortest_cooldown_in_db = BlockedIP.objects.aggregate(shortest=Min("cooldown"))["shortest"]
-        latest_possible_timestamp_of_expired_entries = datetime.datetime.now() - datetime.timedelta(
+        latest_possible_timestamp_of_expired_entries = datetime.datetime.now(pytz.UTC) - datetime.timedelta(
             days=shortest_cooldown_in_db
         )
         for entry in BlockedIP.objects.filter(last_seen__lte=latest_possible_timestamp_of_expired_entries):

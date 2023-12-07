@@ -1,4 +1,5 @@
 """Add IPs to the blocklist from a file."""
+import pytz
 import datetime
 import logging
 import sys
@@ -41,7 +42,7 @@ class Command(BaseCommand):
             file_handle = open(self.file)
         except FileNotFoundError as e:
             sys.exit(f"Failed to open file: {e}")
-        seen = parse_datetime(self.timestamp) if self.timestamp else datetime.datetime.now()
+        seen = parse_datetime(self.timestamp) if self.timestamp else datetime.datetime.now(pytz.UTC)
         ips = set(file_handle.read().split())
         total = len(ips)
         self.puts(f"Read {total} unique IPs from file")

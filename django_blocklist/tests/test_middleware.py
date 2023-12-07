@@ -1,3 +1,4 @@
+import pytz
 import datetime
 
 from django.core.cache import cache
@@ -33,7 +34,8 @@ class MiddlewareTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_update_last_seen(self):
-        then = datetime.datetime(2020, 2, 29)
+        then = datetime.datetime(2020, 2, 29, tzinfo=pytz.UTC)
+        print(then)
         BlockedIP.objects.create(ip="127.0.0.1", first_seen=then, last_seen=then, reason="last-seen test")
         self.client.get("/")
         self.assertGreater(BlockedIP.objects.get(reason="last-seen test").last_seen, then)

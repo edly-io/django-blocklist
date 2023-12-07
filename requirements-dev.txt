@@ -3,3 +3,4 @@ django-stubs
 poetry
 pytest
 pytest-django
+pytz

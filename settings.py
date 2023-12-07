@@ -6,3 +6,4 @@ DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sql
 INSTALLED_APPS = ["django_blocklist"]
 MIDDLEWARE = ["django_blocklist.middleware.BlocklistMiddleware"]
 ROOT_URLCONF = "urls"
+USE_TZ=True
