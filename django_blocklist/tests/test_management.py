@@ -1,4 +1,4 @@
-import pytz
+from datetime import timezone
 import datetime
 import pytest
 import sys
@@ -20,7 +20,7 @@ class CommandsTest(unittest.TestCase):
         BlockedIP.objects.all().delete()
 
     def test_clean(self):
-        two_days_ago = datetime.datetime.now(pytz.UTC) - datetime.timedelta(days=2)
+        two_days_ago = datetime.datetime.now(timezone.utc) - datetime.timedelta(days=2)
         BlockedIP.objects.create(ip=self.ip1, cooldown=1, last_seen=two_days_ago)
         BlockedIP.objects.create(ip=self.ip2, cooldown=3, last_seen=two_days_ago)
         assert BlockedIP.objects.count() == 2
@@ -89,7 +89,7 @@ class CommandsTest(unittest.TestCase):
 
     def test_report(self):
         sys.stdout = (out := StringIO())
-        today = datetime.datetime.now(pytz.UTC)
+        today = datetime.datetime.now(timezone.utc)
         yesterday = today - datetime.timedelta(days=1)
         BlockedIP.objects.create(ip=self.ip1, first_seen=yesterday, last_seen=today)
         BlockedIP.objects.create(ip=self.ip2, first_seen=yesterday, last_seen=today, tally=240)

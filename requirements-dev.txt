@@ -1,6 +1,7 @@
 black
 django-stubs
+mypy
 poetry
 pytest
 pytest-django
-pytz
+ruff

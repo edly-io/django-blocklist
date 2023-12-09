@@ -1,4 +1,4 @@
-import pytz
+from datetime import timezone
 import datetime
 import logging
 
@@ -41,7 +41,7 @@ def get_blocklist(force_cache: bool = False) -> set:
 
 def add_to_blocklist(ips: set, reason="") -> None:
     """Add the provided IPs to the blocklist, with optional `reason`"""
-    now = datetime.datetime.now(pytz.UTC)
+    now = datetime.datetime.now(timezone.utc)
     for ip in ips:
         entry, new = BlockedIP.objects.get_or_create(ip=ip)  # type: ignore
         entry.reason = reason

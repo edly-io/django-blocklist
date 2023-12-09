@@ -1,5 +1,5 @@
 """Print summary information about the data in the blocklist."""
-import pytz
+from datetime import timezone
 import datetime
 from collections import Counter
 from operator import itemgetter
@@ -34,7 +34,7 @@ class Command(BaseCommand):
         _grand_tally = entries.aggregate(Sum("tally"))["tally__sum"]
         print(f"Total blocks of listed IPs: {intcomma(_grand_tally)}")
         print(f"Entries in blocklist: {intcomma(entries.count())}")
-        _one_day_ago = datetime.datetime.now(pytz.UTC) - datetime.timedelta(days=1)
+        _one_day_ago = datetime.datetime.now(timezone.utc) - datetime.timedelta(days=1)
         print(f"Active in last 24 hours: {intcomma(entries.filter(last_seen__gte=_one_day_ago).count())}")
         print(
             f"Stale (added over 24h ago, not seen since): {intcomma(entries.filter(tally=1, last_seen__lt=_one_day_ago).count())}"

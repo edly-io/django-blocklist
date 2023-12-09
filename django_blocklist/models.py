@@ -1,17 +1,17 @@
-import pytz
+from datetime import timezone
 import datetime
 
 from django.contrib.humanize.templatetags.humanize import intcomma, naturaltime
 from django.db import models
 from django.db.models import CharField, DateTimeField, GenericIPAddressField, IntegerField
-from django.utils import timezone
+from django.utils import timezone as utils_timezone
 
 from .apps import Config
 
 
 class BlockedIP(models.Model):
     ip = GenericIPAddressField(primary_key=True, verbose_name="IP")
-    first_seen = DateTimeField(default=timezone.now, db_index=True)
+    first_seen = DateTimeField(default=utils_timezone.now, db_index=True)
     last_seen = DateTimeField(blank=True, null=True, db_index=True)
     cooldown = IntegerField(
         default=Config.defaults["cooldown"],
@@ -40,7 +40,7 @@ class BlockedIP(models.Model):
 
     def has_expired(self):
         """Has the IP cooled long enough to be removed from the list?"""
-        quiet_time = datetime.datetime.now(pytz.UTC) - self.last_seen
+        quiet_time = datetime.datetime.now(timezone.utc) - self.last_seen
         return quiet_time.days >= self.cooldown
 
     def save(self, *args, **kwargs):

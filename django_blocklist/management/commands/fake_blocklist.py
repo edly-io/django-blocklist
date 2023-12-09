@@ -1,5 +1,5 @@
 """Generate fake blocklist entries for testing. Only generates non-routable IPs."""
-import pytz
+from datetime import timezone
 import datetime
 import sys
 from random import randint
@@ -28,7 +28,7 @@ class Command(BaseCommand):
             if created:
                 entry.tally = randint(1, 100)
                 entry.reason = f"Fake reason {randint(1,3)}"
-                entry.first_seen = datetime.datetime.now(pytz.UTC) - datetime.timedelta(randint(1, 10))
+                entry.first_seen = datetime.datetime.now(timezone.utc) - datetime.timedelta(randint(1, 10))
                 entry.last_seen = entry.first_seen + datetime.timedelta(days=randint(1, entry.cooldown - 1))
                 entry.save()
                 quantity -= 1
