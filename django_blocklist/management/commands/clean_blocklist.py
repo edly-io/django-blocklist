@@ -25,9 +25,9 @@ class Command(BaseCommand):
         total_at_start = BlockedIP.objects.count()
         deletion_count = 0
         shortest_cooldown_in_db = BlockedIP.objects.aggregate(shortest=Min("cooldown"))["shortest"]
-        latest_possible_timestamp_of_expired_entries = datetime.datetime.now(timezone.utc) - datetime.timedelta(
-            days=shortest_cooldown_in_db
-        )
+        latest_possible_timestamp_of_expired_entries = datetime.datetime.now(
+            timezone.utc
+        ) - datetime.timedelta(days=shortest_cooldown_in_db)
         for entry in BlockedIP.objects.filter(last_seen__lte=latest_possible_timestamp_of_expired_entries):
             if entry.has_expired():
                 deletion_count += 1

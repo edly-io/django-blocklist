@@ -11,7 +11,7 @@ class DateTests(unittest.TestCase):
     def setUp(self):
         BlockedIP.objects.all().delete()
         self.ip = "1.1.1.1"
-    
+
     def test_days_left(self):
         two_days_ago = datetime.datetime.now(timezone.utc) - datetime.timedelta(days=2)
         BlockedIP.objects.create(ip=self.ip, cooldown=3, last_seen=two_days_ago)
