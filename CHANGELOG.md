@@ -2,6 +2,10 @@
 
 ## 2023-12-08
 ### v2.0.0
+* Updated Python 3.8 as a minimum version
+
+## 2023-12-08
+### v2.0.0
 * Fixed timezone-related problems. Thanks, @ali.salman2!
 * Python 3.9 is now the minimum version
 * Added mypy and ruff to dev tools
